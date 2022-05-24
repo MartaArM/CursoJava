@@ -1,23 +1,25 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package vista;
 
 import javax.swing.JOptionPane;
-import modelo.InsertarUsuarios;
+import modelo.Hash;
+import modelo.MetodosUsuario;
 import modelo.Usuario;
 
 /**
  *
  * @author marta
  */
-public class Aplicacion extends javax.swing.JFrame {
+public class Registro extends javax.swing.JDialog {
 
     /**
-     * Creates new form Aplicacion
+     * Creates new form Registro_
      */
-    public Aplicacion() {
+    public Registro(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -44,29 +46,42 @@ public class Aplicacion extends javax.swing.JFrame {
         tf_correo = new javax.swing.JTextField();
         jb_guardar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Sitka Display", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registro de usuario");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Sitka Display", 0, 18)); // NOI18N
         jLabel2.setText("Nombre de usuario:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tf_nombre_usuario.setFont(new java.awt.Font("Sitka Display", 0, 14)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Sitka Display", 0, 18)); // NOI18N
         jLabel3.setText("Clave:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Sitka Display", 0, 18)); // NOI18N
         jLabel4.setText("Confirmar clave:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jp_clave.setFont(new java.awt.Font("Sitka Display", 0, 14)); // NOI18N
+
+        jp_clave_confirmar.setFont(new java.awt.Font("Sitka Display", 0, 14)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Sitka Display", 0, 18)); // NOI18N
         jLabel5.setText("Nombre:");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tf_nombre.setFont(new java.awt.Font("Sitka Display", 0, 14)); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Sitka Display", 0, 18)); // NOI18N
         jLabel6.setText("Correo:");
 
-        jb_guardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tf_correo.setFont(new java.awt.Font("Sitka Display", 0, 14)); // NOI18N
+
+        jb_guardar.setFont(new java.awt.Font("Sitka Display", 0, 18)); // NOI18N
         jb_guardar.setText("Guardar");
+        jb_guardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jb_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_guardarActionPerformed(evt);
@@ -87,48 +102,54 @@ public class Aplicacion extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(61, 61, 61)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tf_correo)
-                    .addComponent(tf_nombre)
-                    .addComponent(jp_clave_confirmar, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_nombre_usuario)
-                            .addComponent(jp_clave, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))))
-                .addGap(42, 42, 42))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tf_correo)
+                            .addComponent(tf_nombre)
+                            .addComponent(jp_clave_confirmar)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jp_clave, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(42, 42, 42))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(tf_nombre_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(183, 183, 183)
-                .addComponent(jb_guardar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jb_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_nombre_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jp_clave, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tf_nombre_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jp_clave, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jp_clave_confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(jb_guardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(jb_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
 
@@ -148,40 +169,53 @@ public class Aplicacion extends javax.swing.JFrame {
 
     private void jb_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_guardarActionPerformed
         Usuario us = new Usuario();
-        
+
         String nombre_usuario, clave, nombre, correo;
-        
+
+        // Cogemos los valores de las cajas
         nombre_usuario = tf_nombre_usuario.getText();
-        
+
         char[] input_clave = jp_clave.getPassword();
         clave = "";
-        
+
         for (int i=0; i<input_clave.length; i++) {
             clave+=input_clave[i];
         }
-        
+
         char[] input_clave_2 = jp_clave_confirmar.getPassword();
         String clave_2 = "";
-        
+
         for (int i=0; i<input_clave_2.length; i++) {
             clave_2+=input_clave[i];
         }
-        
+
         nombre = tf_nombre.getText();
         correo = tf_correo.getText();
-        
+        // ------------------------------------------------------------
+
+        // Vamos comprobando que todos los valores están rellenos.
         if (!nombre_usuario.isEmpty()) {
+
+            // Comprobamos que no existe el nombre de usuario.
+            Usuario us_buscar = MetodosUsuario.encontrarUsuarioNombreUsuario(nombre_usuario);
+            if (us_buscar == null)
             us.setNombre_usuario(nombre_usuario);
+            else {
+                JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe.");
+                return;
+            }
         }
         else {
             JOptionPane.showMessageDialog(null, "El nombre de"
-                    + "usuario es obligatorio.");
+                + "usuario es obligatorio.");
             return;
         }
-        
+
         if (!clave.isEmpty()) {
+            // Comprobamos que ambas claves son iguales.
             if (clave.equals(clave_2)) {
-                us.setClave(clave);
+                String clave_md5 =  Hash.md5(clave); // Ciframos la clave en md5.
+                us.setClave(clave_md5);
             }
             else {
                 JOptionPane.showMessageDialog(null, "Las claves no coinciden");
@@ -192,7 +226,7 @@ public class Aplicacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "La clave es obligatoria.");
             return;
         }
-        
+
         if (!nombre.isEmpty()) {
             us.setNombre(nombre);
         }
@@ -200,17 +234,47 @@ public class Aplicacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El nombre es obligatorio.");
             return;
         }
-        
+
         if (!correo.isEmpty()) {
-            us.setCorreo(correo);
+            // Comprobamos que no hay un usuario con el mismo correo
+            Usuario us_buscar = MetodosUsuario.encontrarUsuarioCorreo(correo);
+            if (us_buscar == null) {
+                if (MetodosUsuario.comprobarFormatoCorreo(correo)) {
+                    us.setCorreo(correo);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                        "El correo no tiene un formato correcto.");
+                    return;
+                }
+
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "El correo ya existe.");
+                return;
+            }
         }
         else {
             JOptionPane.showMessageDialog(null, "El correo es obligatorio.");
             return;
         }
-        
-        InsertarUsuarios ins = new InsertarUsuarios();
-        ins.registrar(us);
+
+        us.setTipo_usuario(1); // Por defecto, tipo de usuario usuario normal.
+        boolean insertado = MetodosUsuario.registrar(us);
+
+        if (insertado) {
+            JOptionPane.showMessageDialog(null, "El usuario ha sido insertado con éxito.");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "El usuario no se ha insertado.");
+        }
+
+        // Limpiamos los campos.
+        tf_nombre_usuario.setText("");
+        jp_clave.setText("");
+        jp_clave_confirmar.setText("");
+        tf_nombre.setText("");
+        tf_correo.setText("");
     }//GEN-LAST:event_jb_guardarActionPerformed
 
     /**
@@ -230,20 +294,28 @@ public class Aplicacion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Aplicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Aplicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Aplicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Aplicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Aplicacion().setVisible(true);
+                Registro dialog = new Registro(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
