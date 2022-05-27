@@ -26,7 +26,7 @@ public class Ahorcado_ extends javax.swing.JFrame {
         
         letras = new ArrayList<>();
         palabras = new ArrayList<ArrayList<String>>();
-        intentos = 15;
+        intentos = 10;
         rellenarPalabras();
         cogerPistayPalabra();
         rellenarPalabraCorrecta();
@@ -145,15 +145,16 @@ public class Ahorcado_ extends javax.swing.JFrame {
     public void reiniciar() {
         pista = "";
         palabra = "";
-        letras.clear();
-        intentos = 15;
+        intentos = 10;
+        
         palabra_correcta.clear();
+        letras.clear();
         
         letras = new ArrayList<>();
-        palabra_correcta = new ArrayList<>();
         
         cogerPistayPalabra();
         rellenarPalabraCorrecta();
+        
         tf_letra.setText("");
         etiqueta_palabra.setText("******");
         etiqueta_pista.setText(pista);
@@ -161,23 +162,23 @@ public class Ahorcado_ extends javax.swing.JFrame {
     }
     
     private void tf_letraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_letraKeyReleased
-        if (evt.getExtendedKeyCode() == 10){ // Tecla inicio
-            if (intentos != 0) {
+        if (evt.getExtendedKeyCode() == 10){ // Tecla intro
+            if (intentos != 0) { // Si no se han acabado los intentos.
                 String letra = tf_letra.getText();
-                if (letras.indexOf(letra) != -1) {
+                if (letras.indexOf(letra) != -1) { // SI he repetido la letra.
                     JOptionPane.showMessageDialog(null, "Letra repetida. Dime otra.");
                     tf_letra.setText("");
                 }
                 else {
                     int index = palabra.indexOf(letra);
-                    letras.add(letra);
-                    if (index == -1) {
+                    letras.add(letra); // Guardo la letra par ano repetirla
+                    if (index == -1) { // La letra no está en la palabra
                         intentos--;
                         JOptionPane.showMessageDialog(null, "La letra no está. Quedan " + intentos + " intentos.");
                         tf_letra.setText("");
                     }
-                    else {
-                        for (int i=0; i<palabra.length(); i++) {
+                    else { // La letra está en la palabra
+                        for (int i=0; i<palabra.length(); i++) { // Cambio todos los asteriscos que coincidan por la letra
                             char ch = palabra.charAt(i);
                             String ch_s = Character.toString(ch);
                             if (ch_s.equals(letra)) {
@@ -187,11 +188,11 @@ public class Ahorcado_ extends javax.swing.JFrame {
                         }
                         String p = "";
                         for (String s : palabra_correcta) {
-                            p+=s;
+                            p+=s; // Convierto el array en un string
                         }
                         etiqueta_palabra.setText(p);
                         
-                        if (!p.contains("*")) {
+                        if (!p.contains("*")) { // Si en la palabra ya no hay asteriscos
                             JOptionPane.showMessageDialog(null, "Ha ganado.");
                             reiniciar();
                         }
@@ -203,7 +204,8 @@ public class Ahorcado_ extends javax.swing.JFrame {
                 }
             }
             else {
-                JOptionPane.showMessageDialog(null, "Se han acabado los intentos.");
+                JOptionPane.showMessageDialog(null, "Se han acabado los intentos. Ha perdido.");
+                reiniciar();
             }
         }
     }//GEN-LAST:event_tf_letraKeyReleased
