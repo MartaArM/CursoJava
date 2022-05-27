@@ -4,10 +4,12 @@
  */
 package ejerciciossueltos;
 
-/**
- *
- * @author marta
- */
+/*
+Crea una función que reciba como parámetro una cadena de texto con una frase
+y dicha función tendrá que devolver dicha cadena pero invirtiendo la primera y 
+la última palabra.
+
+*/
 public class Ejercicio15 {
     public static void main(String args[]) {
         System.out.println(intercambio("hola pepe que haces"));
